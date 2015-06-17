@@ -1,25 +1,16 @@
 Instructions for compiling manuscripts
 ======================================
 
-[![Build Status](http://server.carlboettiger.info:88/api/badge/github.com/ropensci/RNeXML/status.svg?branch=master)](http://server.carlboettiger.info:88/github.com/ropensci/RNeXML)
-
-[![Circle CI](https://circleci.com/gh/ropensci/RNeXML.svg?style=svg)](https://circleci.com/gh/ropensci/RNeXML)
+[![Circle CI](https://circleci.com/gh/ropensci/rgbif.svg?style=svg)](https://circleci.com/gh/ropensci/rgbif)
 
 
 Install dependencies
 --------------------
 
-Install the dependencies required for the supplementary examples using the `devtools` package:
+Install the `rgbif` R package, including the suggested packages, using the following R command:
 
 ```r
-install.packages("devtools")
-devtools::install_github(c("egonw/rrdf/rrdflibs", "egonw/rrdf/rrdf", "cboettig/Sxslt"))
-```
-
-Then install the `RNeXML` R package, including the suggested packages, using the following R command:
-
-```r
-install.packages("RNeXML", dependencies=TRUE)
+install.packages("rgbif", dependencies=TRUE)
 ```
 
 Note that `rmarkdown` requires `pandoc` (>= 0.12.3) and `pandoc-citeproc` be installed. These ship with the current version of RStudio (`>=0.98`). Additionally, a LaTeX environment is required to generate the output pdf. 
@@ -30,26 +21,23 @@ Build the manuscript
 --------------------
 
 
-Make sure you set the `manuscripts/` as your working directory and then do:
-
 ```r
 rmarkdown::render("manuscript.Rmd")
 ```
+
 or use the `knit2pdf` button in your RStudio console. 
+
 
 Alternately: Using Docker
 -------------------------
 
-Instead of installing R packages seperately, you can try out RNeXML
+Instead of installing R packages seperately, you can try out `rgbif`
 by running RStudio in a Docker container.  This (a) avoids having to install
 software dependencies, and (b) avoids altering anything on your local
 library. If the above doesn't work, or just for fun, give this a try.
 
-The `RNeXML` package and all dependencies are installed on the [rocker/ropensci](http://registry.hub.docker.com/u/rocker/ropensci) Docker container.  You will still need all
-the files from this directory (the `manuscripts` directory on the RNeXML Github repository)
-to build the manuscript. Users can decide to run either an R console (accessed through a terminal) 
+The `rgbif` package and all dependencies are installed on the [rocker/ropensci](http://registry.hub.docker.com/u/rocker/ropensci) Docker container.  You will still need all the files from this directory to build the manuscript. Users can decide to run either an R console (accessed through a terminal) 
 or an RStudio instance (accessed through the browser) on the container. 
-
 
 
 ### Docker Installation
@@ -70,7 +58,7 @@ linking the location of your copy of this directory to
 working directory to the same, and setting user as `rstudio`:
 
 ```bash
-docker run -v /path/to/RNeXML/manuscripts:/home/rstudio \ 
+docker run -v /path/to/rgbif:/home/rstudio \ 
   -w /home/rstudio -u rstudio -ti --rm rocker/ropensci R
 ```
 
@@ -97,6 +85,7 @@ That will take a while to download the image the first time you run it.
 ```bash
 boot2docker ip
 ```
+
 that should return an ip address you can paste into your browser.
 
 3) Add a `:8787` to the end of this address and paste it into your
@@ -106,5 +95,4 @@ but that can change).
 4) You should get the RStudio welcome screen.  you should be able to
 login with user/password `rstudio/rstudio`.
 
-5) Clone the RNeXML repository using New Project from Version Control (https://github.com/ropensci/RNeXML), switch into the `manuscripts` directory and you should be good to go as above.  
-
+5) Clone the `rgbif` repository from https://github.com/ropensci/rgbif, and you should be good to go as above.  
